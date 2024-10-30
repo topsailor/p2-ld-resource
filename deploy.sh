@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # root folder 
-sudo cp download.php index.php /usr/share/hanflix/
+sudo cp play.php index.php /usr/share/hanflix/
 sudo chown -R nginx:nginx /usr/share/hanflix
 sudo chmod -R 755 /usr/share/hanflix
 
