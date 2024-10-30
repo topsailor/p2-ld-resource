@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
     }
 
     // videolist 테이블에서 특정 ID에 해당하는 비디오 정보 가져오기
-    $sql = "SELECT title, url FROM testlist WHERE id = ?";
+    $sql = "SELECT name, url FROM testlist WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $fileId);
     $stmt->execute();

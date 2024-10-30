@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // videolist 테이블에서 데이터 가져오기
-$sql = "SELECT id, title, url, description FROM testlist";
+$sql = "SELECT id, name, url, description FROM testlist";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
