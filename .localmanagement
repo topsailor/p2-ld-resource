@@ -1,0 +1,5 @@
+sudo su
+git clone https://github.com/topsailor/p2-ld-resource.git
+cd p2-ld-resource
+sh install.sh
+sh deploay.sh

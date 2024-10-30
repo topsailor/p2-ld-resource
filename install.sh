@@ -4,6 +4,6 @@
 
 sudo dnf install nginx php-fpm php-mysqlnd -y
 sudo systemctl enable --now nginx php-fpm
-
+mkdir /usr/share/hanflix
 
 
