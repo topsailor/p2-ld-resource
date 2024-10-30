@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $fileId);
     $stmt->execute();
-    $stmt->bind_result($title, $fileUrl);
+    $stmt->bind_result($name, $fileUrl);
     $stmt->fetch();
     $stmt->close();
     $conn->close();

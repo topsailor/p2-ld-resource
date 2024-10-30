@@ -23,9 +23,9 @@ if ($result->num_rows > 0) {
     echo "<ul>";
     while ($row = $result->fetch_assoc()) {
         echo "<li>";
-        echo "<strong>" . $row["title"] . "</strong><br>";
+        echo "<strong>" . $row["name"] . "</strong><br>";
         // 다운로드 링크를 download.php로 연결
-        echo "<a href='download.php?id=" . $row["id"] . "'>Download " . $row["title"] . "</a><br>";
+        echo "<a href='download.php?id=" . $row["id"] . "'>Download " . $row["name"] . "</a><br>";
         echo "<p>" . $row["url"] . "</p>";
         echo "</li>";
     }
