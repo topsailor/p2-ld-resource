@@ -106,7 +106,6 @@ $result = $conn->query($sql);
 
                 // 다운로드 및 재생 버튼 추가
                 echo "<div class='button-group'>";
-                echo "<a class='action-btn' href='download.php?id=" . $row["id"] . "' download>Download</a>";
                 echo "<a class='action-btn' href='play.php?id=" . $row["id"] . "' target='_blank'>Play</a>";
                 echo "</div>";
 

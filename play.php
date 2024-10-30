@@ -73,11 +73,32 @@ if (isset($_GET['id'])) {
         <body>
             <div class="video-container">
                 <h1><?php echo htmlspecialchars($video_name); ?></h1>
-                <video controls>
-                    <source src="<?php echo htmlspecialchars($fileUrl); ?>" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <video id="video" controls></video>
             </div>
+
+            <!-- hls.js 라이브러리 추가 -->
+            <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+            <script>
+                var video = document.getElementById('video');
+                var videoSrc = '<?php echo htmlspecialchars($fileUrl); ?>';
+
+                if (Hls.isSupported()) {
+                    var hls = new Hls();
+                    hls.loadSource(videoSrc);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                        video.play();
+                    });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    // HLS를 기본적으로 지원하는 브라우저 (주로 Safari)
+                    video.src = videoSrc;
+                    video.addEventListener('loadedmetadata', function() {
+                        video.play();
+                    });
+                } else {
+                    alert('HLS is not supported on this browser.');
+                }
+            </script>
         </body>
         </html>
         <?php
