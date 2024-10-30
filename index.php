@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // videolist 테이블에서 데이터 가져오기
-$sql = "SELECT id, name, url, description FROM testlist";
+$sql = "SELECT id, name, url FROM testlist";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         echo "<strong>" . $row["title"] . "</strong><br>";
         // 다운로드 링크를 download.php로 연결
         echo "<a href='download.php?id=" . $row["id"] . "'>Download " . $row["title"] . "</a><br>";
-        echo "<p>" . $row["description"] . "</p>";
+        echo "<p>" . $row["url"] . "</p>";
         echo "</li>";
     }
     echo "</ul>";
