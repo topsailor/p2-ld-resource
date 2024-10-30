@@ -2,8 +2,8 @@
 // MySQL 연결 설정
 $servername = "localhost";
 $username = "root";         // MySQL 사용자 이름
-$password = "your_password"; // MySQL 비밀번호
-$dbname = "mydb";
+$password = "hanflixdbpw"; // MySQL 비밀번호
+$dbname = "test1";
 
 // MySQL 연결 생성
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // videolist 테이블에서 데이터 가져오기
-$sql = "SELECT id, title, url, description FROM videolist";
+$sql = "SELECT id, title, url, description FROM testlist";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

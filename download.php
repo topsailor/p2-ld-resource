@@ -8,8 +8,8 @@ if (isset($_GET['id'])) {
     // MySQL 연결 설정
     $servername = "localhost";
     $username = "root";         // MySQL 사용자 이름
-    $password = "your_password"; // MySQL 비밀번호
-    $dbname = "mydb";
+    $password = "hanflixdbpw"; // MySQL 비밀번호
+    $dbname = "test1";
 
     // MySQL 연결 생성
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
     }
 
     // videolist 테이블에서 특정 ID에 해당하는 비디오 정보 가져오기
-    $sql = "SELECT title, url FROM videolist WHERE id = ?";
+    $sql = "SELECT title, url FROM testlist WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $fileId);
     $stmt->execute();
