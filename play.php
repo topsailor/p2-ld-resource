@@ -4,10 +4,11 @@ if (isset($_GET['id'])) {
     $fileId = $_GET['id'];
 
     // MySQL 연결 설정
-    $servername = "localhost";
-    $username = "root";         // MySQL 사용자 이름
+    $servername = "10.0.5.228";
+    $username = "hanflixdb";         // MySQL 사용자 이름
     $password = "hanflixdbpw";  // MySQL 비밀번호
-    $dbname = "test1";
+    $dbname = "video_db";
+    $url_parent = "https://d1uvydkrkf695y.cloudfront.net";
 
     // MySQL 연결 생성
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,17 +18,20 @@ if (isset($_GET['id'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // testlist 테이블에서 해당 ID의 비디오 정보 가져오기
-    $sql = "SELECT name, url FROM testlist WHERE id = ?";
+    // videolist 테이블에서 해당 ID의 비디오 정보 가져오기
+    $sql = "SELECT video_name FROM video_files WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $fileId);
     $stmt->execute();
-    $stmt->bind_result($name, $fileUrl);
+    $stmt->bind_result($video_name);
     $stmt->fetch();
     $stmt->close();
     $conn->close();
 
-    if ($fileUrl) {
+    if ($video_name) {
+        // 비디오의 전체 URL 생성
+        $fileUrl = $url_parent . '/' . $video_name;
+
         // 비디오 스트리밍 페이지 출력
         ?>
         <!DOCTYPE html>
@@ -35,7 +39,7 @@ if (isset($_GET['id'])) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title><?php echo htmlspecialchars($name); ?></title>
+            <title><?php echo htmlspecialchars($video_name); ?></title>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -68,7 +72,7 @@ if (isset($_GET['id'])) {
         </head>
         <body>
             <div class="video-container">
-                <h1><?php echo htmlspecialchars($name); ?></h1>
+                <h1><?php echo htmlspecialchars($video_name); ?></h1>
                 <video controls>
                     <source src="<?php echo htmlspecialchars($fileUrl); ?>" type="video/mp4">
                     Your browser does not support the video tag.

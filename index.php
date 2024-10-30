@@ -1,9 +1,10 @@
 <?php
 // MySQL 연결 설정
-$servername = "localhost";
-$username = "root";         // MySQL 사용자 이름
+$servername = "10.0.5.228";
+$username = "hanflixdb";         // MySQL 사용자 이름
 $password = "hanflixdbpw";  // MySQL 비밀번호
-$dbname = "test1";
+$dbname = "video_db";
+$url_parent = "https://d1uvydkrkf695y.cloudfront.net";  // CDN 주소
 
 // MySQL 연결 생성
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // videolist 테이블에서 데이터 가져오기
-$sql = "SELECT id, name, url FROM testlist";
+$sql = "SELECT id, video_name, upload_time FROM video_files";
 $result = $conn->query($sql);
 
 // HTML 및 스타일 출력
@@ -96,13 +97,16 @@ $result = $conn->query($sql);
             echo "<h1>Video List</h1>";
             echo "<ul>";
             while ($row = $result->fetch_assoc()) {
+                // 파일의 전체 URL 생성
+                $full_url = $url_parent . '/' . $row["video_name"];
+
                 echo "<li>";
-                echo "<strong>" . $row["name"] . "</strong><br>";
-                echo "<p class='url'>" . $row["url"] . "</p>";
+                echo "<strong>" . $row["video_name"] . "</strong><br>";
+                echo "<p class='url'>" . $row["upload_time"] . "</p>";
 
                 // 다운로드 및 재생 버튼 추가
                 echo "<div class='button-group'>";
-                echo "<a class='action-btn' href='download.php?id=" . $row["id"] . "'>Download</a>";
+                echo "<a class='action-btn' href='download.php?id=" . $row["id"] . "' download>Download</a>";
                 echo "<a class='action-btn' href='play.php?id=" . $row["id"] . "' target='_blank'>Play</a>";
                 echo "</div>";
 
