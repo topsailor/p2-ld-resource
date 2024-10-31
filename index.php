@@ -94,7 +94,7 @@ $result = $conn->query($sql);
         <?php
         if ($result->num_rows > 0) {
             // 테이블 데이터 출력
-            echo "<h1>Video List</h1>";
+            echo "<h1>Hanflix Web: Home</h1>";
             echo "<ul>";
             while ($row = $result->fetch_assoc()) {
                 // 파일의 전체 URL 생성

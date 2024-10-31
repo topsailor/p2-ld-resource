@@ -84,7 +84,8 @@ if (isset($_GET['id'])) {
     </head>
     <body>
         <div class="video-container">
-            <h1><?php echo htmlspecialchars($video_name); ?></h1>
+            <h1>Now Playing</h1>
+             <!-- <h1><?php echo htmlspecialchars($video_name); ?></h1> -->
             <video id="video" controls></video>
         </div>
 
