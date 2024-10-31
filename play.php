@@ -29,16 +29,16 @@ if (isset($_GET['id'])) {
     $conn->close();
 
     // 디버깅: 비디오 이름이 제대로 가져왔는지 확인
-    if ($video_name) {
-        echo "Video Name: " . $video_name . "<br>";
-    } else {
-        die("Error: Video not found in the database.");
-    }
+    // if ($video_name) {
+    //     echo "Video Name: " . $video_name . "<br>";
+    // } else {
+    //     die("Error: Video not found in the database.");
+    // }
 
     // 비디오 URL 생성
     if ($video_name) {
         $fileUrl = $url_parent . '/' . $video_name;
-        echo $fileUrl;
+
     } else {
         die("Error: Video not found.");
     }
@@ -51,6 +51,7 @@ if (isset($_GET['id'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- <title><?php echo htmlspecialchars($video_name); ?></title> -->
+        <title>Hanflix Web: Play</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
