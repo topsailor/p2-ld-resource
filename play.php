@@ -38,6 +38,7 @@ if (isset($_GET['id'])) {
     // 비디오 URL 생성
     if ($video_name) {
         $fileUrl = $url_parent . '/' . $video_name;
+        echo $fileUrl
     } else {
         die("Error: Video not found.");
     }
